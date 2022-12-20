@@ -1,0 +1,35 @@
+{
+  "name": "ratings-and-reviews-api",
+  "version": "1.0.0",
+  "description": "This will be the database and API setup for the ratings and reviews widget within the FEC project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bornean-Orangutan/Ratings-and-Reviews-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bornean-Orangutan/Ratings-and-Reviews-API/issues"
+  },
+  "homepage": "https://github.com/Bornean-Orangutan/Ratings-and-Reviews-API#readme",
+  "dependencies": {
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.28.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.0"
+  },
+  "lint-staged": {
+    "**/*.js": "ESLint"
+  }
+}

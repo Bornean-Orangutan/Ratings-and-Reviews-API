@@ -90,7 +90,22 @@ const Characteristics = sequelize.define('characteristics', {
 });
 
 const Characteristic_reviews = sequelize.define('characteristic_reviews', {
-
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+    autoIncrement: true,
+  },
+  value: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+});
+Characteristic_reviews.belongsTo(Characteristics, {
+  foreignKey: 'characteristic_id',
+});
+Characteristic_reviews.belongsTo(Reviews, {
+  foreignKey: 'review_id',
 });
 
 sequelize.sync();

@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 const express = require('express');
@@ -26,7 +28,6 @@ app.get('/reviews', (req, res) => {
     res.sendStatus(424);
   } else {
     const { product_id, sort, page = 1 } = req.query;
-    console.log(page);
     const offset = req.query.page - 1 || 0;
     const count = req.query.count || 5;
     Reviews.findAll({
@@ -47,6 +48,56 @@ app.get('/reviews', (req, res) => {
         results: data,
       });
     });
+  }
+});
+// get request for meta data.
+app.get('/reviews/meta', (req, res) => {
+  if (!req.query.product_id) {
+    res.sendStatus(424);
+  } else {
+    const responseObj = {
+      product_id: req.query.product_id,
+      ratings: {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+      },
+      recommended: {
+        0: 0,
+      },
+      characteristics: {
+
+      },
+    };
+    Characteristics.findAll({
+      where: {
+        product_id: req.query.product_id,
+      },
+      include: [{
+        model: Characteristic_reviews,
+        include: [{
+          model: Reviews,
+          attributes: ['rating', 'recommend'],
+        }],
+      }],
+    })
+      .then((data) => {
+        for (let i = 0; i < data.length; i++) {
+          responseObj.characteristics[data[i].name] = { id: data[i].id };
+          let value = 0;
+          for (let j = 0; j < data[i].characteristic_reviews.length; j++) {
+            value += data[i].characteristic_reviews[j].value;
+            responseObj.ratings[data[i].characteristic_reviews[j].review.rating]++;
+            if (data[i].characteristic_reviews[j].review.recommend) {
+              responseObj.recommended[0]++;
+            }
+          }
+          responseObj.characteristics[data[i].name].value = value / data[i].characteristic_reviews.length;
+        }
+        res.send(responseObj);
+      });
   }
 });
 // use the provess.env to define the port to listen on.

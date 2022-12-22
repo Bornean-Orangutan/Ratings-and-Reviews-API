@@ -4,8 +4,9 @@
   "description": "This will be the database and API setup for the ratings and reviews widget within the FEC project.",
   "main": "index.js",
   "scripts": {
-    "createDB": "node database/db.js",
-    "prepare": "husky install"
+    "createDB": "node server/database/db.js",
+    "server-dev": "nodemon server/index.js",
+    "server-prod": "node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,8 @@
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "n-readlines": "^1.0.1",
+    "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0",

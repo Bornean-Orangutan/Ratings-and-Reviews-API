@@ -19,13 +19,15 @@ const Reviews = sequelize.define('reviews', {
   product_id: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    unique: false,
   },
   rating: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    unique: false,
   },
   date: {
-    type: Sequelize.DATE,
+    type: Sequelize.TEXT,
     defaultValue: Sequelize.NOW,
   },
   summary: {
@@ -53,8 +55,9 @@ const Reviews = sequelize.define('reviews', {
   helpfulness: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
+    unique: false,
   },
-});
+}, { timestamps: false });
 
 const Photos = sequelize.define('photos', {
   id: {
@@ -67,8 +70,11 @@ const Photos = sequelize.define('photos', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-});
+}, { timestamps: false });
 Photos.belongsTo(Reviews, {
+  foreignKey: 'review_id',
+});
+Reviews.hasMany(Photos, {
   foreignKey: 'review_id',
 });
 
@@ -82,12 +88,13 @@ const Characteristics = sequelize.define('characteristics', {
   product_id: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    unique: false,
   },
   name: {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-});
+}, { timestamps: false });
 
 const Characteristic_reviews = sequelize.define('characteristic_reviews', {
   id: {
@@ -99,13 +106,24 @@ const Characteristic_reviews = sequelize.define('characteristic_reviews', {
   value: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    unique: false,
   },
-});
+}, { timestamps: false });
 Characteristic_reviews.belongsTo(Characteristics, {
+  foreignKey: 'characteristic_id',
+});
+Characteristics.hasMany(Characteristic_reviews, {
   foreignKey: 'characteristic_id',
 });
 Characteristic_reviews.belongsTo(Reviews, {
   foreignKey: 'review_id',
 });
+Reviews.hasMany(Characteristic_reviews, {
+  foreignKey: 'review_id',
+});
 
 sequelize.sync();
+
+module.exports = {
+  Reviews, Photos, Characteristics, Characteristic_reviews,
+};

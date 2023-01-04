@@ -51,13 +51,14 @@ const Reviews = sequelize.define('reviews', {
   },
   response: {
     type: Sequelize.TEXT,
+    defaultValue: null,
   },
   helpfulness: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     unique: false,
   },
-}, { timestamps: false });
+}, { timestamps: false, indexes: [{ fields: ['product_id'] }] });
 
 const Photos = sequelize.define('photos', {
   id: {
@@ -70,7 +71,7 @@ const Photos = sequelize.define('photos', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-}, { timestamps: false });
+}, { timestamps: false, indexes: [{ fields: ['review_id'] }] });
 Photos.belongsTo(Reviews, {
   foreignKey: 'review_id',
 });
@@ -94,7 +95,7 @@ const Characteristics = sequelize.define('characteristics', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-}, { timestamps: false });
+}, { timestamps: false, indexes: [{ fields: ['product_id'] }] });
 
 const Characteristic_reviews = sequelize.define('characteristic_reviews', {
   id: {
@@ -108,7 +109,7 @@ const Characteristic_reviews = sequelize.define('characteristic_reviews', {
     allowNull: false,
     unique: false,
   },
-}, { timestamps: false });
+}, { timestamps: false, indexes: [{ fields: ['characteristic_id'] }] });
 Characteristic_reviews.belongsTo(Characteristics, {
   foreignKey: 'characteristic_id',
 });

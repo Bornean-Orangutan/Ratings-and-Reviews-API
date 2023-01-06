@@ -27,7 +27,7 @@ const Reviews = sequelize.define('reviews', {
     unique: false,
   },
   date: {
-    type: Sequelize.TEXT,
+    type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
   },
   summary: {

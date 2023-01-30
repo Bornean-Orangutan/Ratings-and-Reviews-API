@@ -48,7 +48,10 @@ To allow for 1000 RPS, this API was deployed over 4 different instances: a load 
 
 ### How to install and use PostgreSQL
 #### Installation
-* Utilizing Homebrew to install: ```bash brew install postgresql```
+* Utilizing Homebrew to install:
+* ```bash
+* brew install postgresql
+* ```
 * Start postgresql service: <b>brew services start postegresql</b>
   * Stop: <b>brew services stop postgres</b>
 * Connect to postgresql: <b>psql postgres</b>

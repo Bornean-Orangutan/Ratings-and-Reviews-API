@@ -12,8 +12,7 @@ const {
 const app = express();
 app.use(express.json());
 
-// TODO: set up routes for the various requests that will come in.
-// need a get request to reviews
+// get request for reviews
 app.get('/reviews', (req, res) => {
   if (!req.query.product_id) {
     res.sendStatus(424);
@@ -103,29 +102,28 @@ app.get('/reviews/meta', (req, res) => {
   }
 });
 
-// app.post('/reviews', (req, res) => {
-//   if (req.body.product_id && req.body.rating && req.body.summary && req.body.body && req.body.recommend && req.body.name && req.body.email && req.body.photos && req.body.characteristics) {
-//     // change the database to add the necessary information.
-//     Reviews.create({
-//       product_id: req.body.product_id,
-//       rating: req.body.rating,
-//       summary: req.body.summary,
-//       body: req.body.body,
-//       recommend: req.body.recommend,
-//       reviewer_name: req.body.name,
-//       reviewer_email: req.body.email,
-//     })
-//       .then((data) => {
-//         res.sendStatus(204);
-//       });
-//   } else {
-//     res.sendStatus(500);
-//   }
-// });
+// post request for reviews
 app.post('/reviews', (req, res) => {
-  // redo this because now it's not working.
+  if (req.body.product_id && req.body.rating && req.body.summary && req.body.body && req.body.recommend && req.body.name && req.body.email && req.body.photos && req.body.characteristics) {
+    // change the database to add the necessary information.
+    Reviews.create({
+      product_id: req.body.product_id,
+      rating: req.body.rating,
+      summary: req.body.summary,
+      body: req.body.body,
+      recommend: req.body.recommend,
+      reviewer_name: req.body.name,
+      reviewer_email: req.body.email,
+    })
+      .then((data) => {
+        res.sendStatus(204);
+      });
+  } else {
+    res.sendStatus(500);
+  }
 });
 
+// put request for reviews to mark as helpful
 app.put('/reviews/:review_id/helpful', (req, res) => {
   if (req.params.review_id) {
     Reviews.findOne({
@@ -146,6 +144,7 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
   }
 });
 
+// put request for reviews to report a review
 app.put('/reviews/:review_id/report', (req, res) => {
   if (req.params.review_id) {
     Reviews.update(

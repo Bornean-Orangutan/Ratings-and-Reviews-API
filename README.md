@@ -30,7 +30,7 @@ The Ratings and Reviews API is a collection of endpoints that allow users to ret
 To allow for 1000 RPS, this API was deployed over 4 different instances: a load balancer instance, and three server and database handling instances. Below are key metric improvements compared to running the endpoints on a single instance. All utilize a throughput of 1000 RPS for 60 seconds.
 * Get Reviews
   * 46% to 0% Error Rate
-  * 5362 ms to 3 ms Latency
+  * 5263 ms to 3 ms Latency
 * Get Meta Data
   * 44% to 0% Error Rate
   * 3926 ms to 1 ms Latency

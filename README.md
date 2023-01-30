@@ -52,15 +52,39 @@ To allow for 1000 RPS, this API was deployed over 4 different instances: a load 
 ```bash
 brew install postgresql
 ```
-* Start postgresql service: <b>brew services start postegresql</b>
-  * Stop: <b>brew services stop postgres</b>
-* Connect to postgresql: <b>psql postgres</b>
-* Install dependencies in Repo: <b>npm install pq</b>
+* Start postgresql service:
+```bash
+brew services start postegresql
+```
+* Stop:
+```bash
+brew services stop postgres
+```
+* Connect to postgresql: 
+```bash
+psql postgres
+```
+* Install dependencies in Repo:
+```bash
+npm install
+```
 #### Utilization
-* Create a database: <b>CREATE DATABASE dbname;</b>
-* Connect to database: <b>\c dbname</b>
-* Read currrent database: <b>SELECT current_database();</b>
-* List all tables: <b>\dt</b>
+* Create a database:
+```bash
+CREATE DATABASE dbname;
+```
+* Connect to database
+```bash
+\c dbname
+```
+* Read currrent database:
+```bash
+SELECT current_database();
+```
+* List all tables:
+```bash
+\dt
+```
 
 ## Contributors
 <a href="https://github.com/Bornean-Orangutan/Ratings-and-Reviews-API/graphs/contributors">

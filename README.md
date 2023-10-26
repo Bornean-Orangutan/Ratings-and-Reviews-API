@@ -1,4 +1,4 @@
-# Questions-and-Answers-API
+# Ratings-and-Reviews-API
 The Ratings and Reviews API is a collection of endpoints that allow users to retreive and post ratings and reviews related to a specific product. The endpoints work in conjunction with the FEC webpage that displays the product information as a commercial website. In total, there are five endpoints for getting data, posting data, and marking helpful and reported values on the data.
 
 ## Table of Contents
@@ -39,10 +39,10 @@ To allow for 1000 RPS, this API was deployed over 4 different instances: a load 
   * 3128 ms to 5 ms Latency
 * Mark Review as Helpful
   * 25% to 0% Error Rate
-  * 2032 ms to 8 ms Latency
+  * 2032 ms to 7 ms Latency
 * Report Review
   * 32% to 0% Error Rate
-  * 2568 ms to 20 ms Latency
+  * 2568 ms to 18 ms Latency
 
 ## Installation Details
 
